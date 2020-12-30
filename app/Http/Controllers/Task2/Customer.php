@@ -8,11 +8,7 @@ class Customer
     public function getProductBoughtMoreThanOne() {
         foreach($this->getPurchases() as $purchase) {
           foreach ($purchase->getProducts() as $index => $product) {
-              $productPurchased[$purchase->getDate()->format('d-m-Y')];
-
-              $skus[] = $product->getSku();
-
-              var_dump($productPurchased);
+              
           }
         }
 

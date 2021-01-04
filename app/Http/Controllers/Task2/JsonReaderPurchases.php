@@ -5,8 +5,7 @@
 //Deberás escribir un programa que lea el archivo JSon (adjunto) donde se encuentran las compras de un cliente y calcule la fecha de posible
 // recompra de los productos que compró (solo los que compró al menos 2 veces).
 //
-//Para obtener la fecha de recompra de un producto: hay que analizar cada cuanto tiempo vuelve a comprar ese producto.
-// Luego sumarle ese tiempo a la fecha de última compra del producto. Vas a tener una fecha de recompra por producto.
+
 //
 //Este ejercicio nos sirve para evaluar dos cosas: 1. cuán fácil es entender el código que escribas y 2. como diseñás el modelo de objetos.
 namespace App\Http\Controllers\Task2;
@@ -18,8 +17,10 @@ class JsonReaderPurchases {
      */
     private Customer $customer;
 
-    const CUSTOMER_KEY = 'customer';
+    const CUSTOMER_KEY  = 'customer';
     const PURCHASES_KEY = 'purchases';
+
+    const LOCATION_JSON_FILE = 'app/Http/Controllers/Task2/';
 
 
     /**
@@ -28,7 +29,7 @@ class JsonReaderPurchases {
     public function __construct($jsonFile)
     {
 
-        $data = file_get_contents('app/Http/Controllers/Task2/' . $jsonFile);
+        $data = file_get_contents( self::LOCATION_JSON_FILE . $jsonFile);
 
         $customer = json_decode($data, true);
 
@@ -43,8 +44,10 @@ class JsonReaderPurchases {
 
         $this->customer = new Customer($purchases);
 
-        $this->customer->getProductBoughtMoreThanOne();
+    }
 
+    public function getCustomer() {
+        return $this->customer;
     }
 
 
